@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-5">Ingresar texto para predecir polaridad</h1>
+    <form method="post">
+        <label for="title">Mensaje</label>
+        <br>
+        <input class="form-control me-2" type="text" name="mensaje"
+               placeholder="Mensaje"
+               value=""></input>
+        <br>
+
+        <button class="btn btn-outline-success" type="submit">Predecir</button>
+
+    </form>
+
+    {% if valor_prediccion %}
+        </hr>
+        <h3 class="mt-5">Predicción</h3>
+        <p class="lead">{{valor_prediccion}}</p>
+        {% if tipo_prediccion==1 %}
+            <img src="{{url_for('static', filename='imagenes/positivo.png')}}" />
+        {% elif tipo_prediccion==0 %}
+            <img src="{{url_for('static', filename='imagenes/negativo.png')}}" />
+        {% else %}
+            <img src="{{url_for('static', filename='imagenes/neutro.png')}}" />
+        {% endif %}
+    {% endif %}
+
+    </hr>
+{% endblock %}
